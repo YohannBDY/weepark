@@ -1,0 +1,72 @@
+/* ============================================================
+   Barre de navigation principale
+   ============================================================ */
+
+nav {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 56px;
+  gap: 4px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+nav::-webkit-scrollbar { display: none; }
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  margin-right: auto;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--green);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-icon svg { width: 18px; height: 18px; fill: white; }
+
+.nav-btn {
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background var(--transition), color var(--transition);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav-btn:hover  { background: var(--bg3); color: var(--text); }
+.nav-btn.active { background: var(--green); color: white; }
+.nav-btn svg    { width: 15px; height: 15px; flex-shrink: 0; }
+
+@media (max-width: 380px) {
+  .nav-btn span { display: none; }
+  .nav-btn { padding: 7px 10px; }
+  .logo span  { display: none; }
+}

@@ -1,0 +1,65 @@
+/* ============================================================
+   Vue Louer — annonces de places privées
+   ============================================================ */
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--transition);
+}
+
+.add-btn:hover  { background: #059669; }
+.add-btn svg    { width: 16px; height: 16px; }
+
+/* Empty state */
+.empty-state    { text-align: center; padding: 56px 24px; color: var(--muted); }
+.empty-icon     { margin-bottom: 16px; opacity: 0.4; display: flex; justify-content: center; }
+.empty-icon svg { width: 56px; height: 56px; }
+.empty-title    { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+.empty-sub      { font-size: 13px; }
+
+/* Liste d'annonces */
+.annonce-list { display: flex; flex-direction: column; gap: 10px; }
+
+.annonce-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  transition: border-color var(--transition);
+}
+
+.annonce-card:hover { border-color: rgba(0, 0, 0, 0.2); }
+
+.annonce-addr  { font-weight: 600; font-size: 14px; }
+.annonce-meta  { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.annonce-price { font-size: 18px; font-weight: 700; color: var(--green); }
+.annonce-price span { font-size: 12px; color: var(--muted); font-weight: 400; }
+
+.delete-btn {
+  padding: 6px 12px;
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--red);
+  border: none;
+  border-radius: 7px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.delete-btn:hover { background: rgba(239, 68, 68, 0.22); }

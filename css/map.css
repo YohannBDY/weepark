@@ -1,0 +1,411 @@
+/* ============================================================
+   Vue Carte — map Leaflet, overlays, popup, toast
+   ============================================================ */
+
+#map {
+  height: calc(100vh - 56px);
+  width: 100%;
+  background: var(--bg);
+}
+
+/* Overlay flottant (filtre + compteurs) */
+.map-overlay {
+  position: absolute;
+  top: 66px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  width: min(96%, 700px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.filter-bar {
+  background: white;
+  border-radius: 12px;
+  padding: 11px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: all;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: box-shadow var(--transition);
+}
+
+.filter-bar:hover { box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4); }
+.filter-bar span  { font-size: 14px; color: #374151; font-weight: 500; }
+.filter-icon      { color: #6b7280; flex-shrink: 0; }
+.filter-arrow     { margin-left: auto; color: #6b7280; font-size: 12px; }
+
+.status-bar {
+  background: white;
+  border-radius: 10px;
+  padding: 9px 16px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  pointer-events: all;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.dot         { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.dot-green   { background: var(--green); }
+.dot-red     { background: var(--red); }
+.dot-orange  { background: var(--orange); }
+
+/* Bannière publicité (carte) */
+.ad-banner {
+  position: absolute;
+  bottom: 20px;
+  left: 16px;
+  z-index: 900;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 300px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.ad-thumb {
+  width: 36px;
+  height: 36px;
+  background: var(--bg3);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.ad-thumb svg   { width: 18px; height: 18px; color: var(--text); }
+
+.ad-text        { font-size: 12px; color: var(--muted); line-height: 1.4; }
+.ad-text strong { color: var(--text); display: block; margin-bottom: 2px; }
+
+.ad-watch {
+  padding: 5px 12px;
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--transition);
+}
+
+.ad-watch:hover { background: #059669; }
+
+/* ──── Panneau de filtres ──────────────────────────────── */
+
+.filter-bar {
+  transition: border-radius var(--transition);
+}
+
+.filter-bar.open {
+  border-radius: 12px 12px 0 0;
+}
+
+.filter-bar .filter-arrow {
+  transition: transform var(--transition);
+  display: inline-flex;
+}
+
+.filter-bar.open .filter-arrow {
+  transform: rotate(180deg);
+}
+
+.filter-panel {
+  background: white;
+  border-radius: 0 0 14px 14px;
+  padding: 16px 20px 18px;
+  pointer-events: all;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  display: none;
+}
+
+.filter-panel.open { display: block; }
+
+.filter-group { margin-bottom: 14px; }
+.filter-group:last-child { margin-bottom: 0; }
+
+.filter-group-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 9px;
+}
+
+.filter-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.filter-chip {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1.5px solid #e5e7eb;
+  background: #f9fafb;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: inherit;
+}
+
+.filter-chip:hover   { border-color: var(--green); color: var(--green); }
+.filter-chip.active  { background: var(--green); color: white; border-color: var(--green); }
+
+/* ──── Bouton capteur ESP32 ────────────────────────────── */
+
+.sensor-btn {
+  position: absolute;
+  bottom: 152px;
+  right: 16px;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border: none;
+  transition: box-shadow var(--transition), background var(--transition);
+}
+
+.sensor-btn:hover      { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }
+.sensor-btn svg        { width: 20px; height: 20px; color: #374151; transition: color var(--transition); }
+.sensor-btn.connected  { background: #3b82f6; }
+.sensor-btn.connected svg { color: white; }
+
+/* Badge "Capteur en direct" dans la status-bar */
+.dot-live {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #3b82f6;
+  flex-shrink: 0;
+  animation: pulse-live 1.4s ease infinite;
+}
+
+@keyframes pulse-live {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* ──── Bouton guidage vocal ────────────────────────────── */
+
+.guidance-btn {
+  position: absolute;
+  bottom: 204px;
+  right: 16px;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border: none;
+  transition: box-shadow var(--transition), background var(--transition);
+}
+
+.guidance-btn:hover      { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }
+.guidance-btn svg        { width: 20px; height: 20px; color: #374151; transition: color var(--transition); }
+.guidance-btn.active     { background: var(--green); }
+.guidance-btn.active svg { color: white; }
+
+/* ──── Popup — éléments enrichis ──────────────────────── */
+
+.popup-dist {
+  font-size: 12px;
+  font-weight: 600;
+  color: #3b82f6;
+  margin-bottom: 10px;
+}
+
+.popup-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+/* Annule le margin-bottom hérité quand le badge est dans popup-tags */
+.popup-tags .popup-status {
+  margin-bottom: 0;
+}
+
+.popup-tag-taille {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  background: #f3f4f6;
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+
+.popup-price {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.popup-gps {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.popup-gps-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex: 1;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid #e5e7eb;
+  color: #6b7280;
+  background: transparent;
+  transition: all var(--transition);
+}
+
+.popup-gps-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.popup-gps-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+/* Bouton localisation */
+.locate-btn {
+  position: absolute;
+  bottom: 100px;
+  right: 16px;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: none;
+  transition: box-shadow var(--transition);
+}
+
+.locate-btn:hover { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4); }
+.locate-btn svg   { width: 20px; height: 20px; color: #374151; }
+
+/* Popup Leaflet — thème dark */
+.leaflet-popup-content-wrapper {
+  background: var(--bg2);
+  color: var(--text);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.leaflet-popup-tip     { background: var(--bg2); }
+.leaflet-popup-content { margin: 0; }
+
+.popup-box   { padding: 14px 18px; min-width: 200px; }
+.popup-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.popup-addr  { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+
+.popup-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.popup-status.libre    { background: rgba(16, 185, 129, 0.15); color: var(--green); }
+.popup-status.occupee  { background: rgba(239,  68,  68, 0.15); color: var(--red); }
+.popup-status.reservee { background: rgba(245, 158,  11, 0.15); color: var(--orange); }
+
+.popup-btn {
+  width: 100%;
+  padding: 8px;
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.popup-btn:hover:not(:disabled) { background: #059669; }
+.popup-btn:disabled              { background: var(--bg3); color: var(--muted); cursor: default; }
+
+/* Toast de réservation */
+.reservation-toast {
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1100;
+  background: var(--bg2);
+  border: 1px solid var(--green);
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 14px;
+  display: none;
+  gap: 10px;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.reservation-toast.show { display: flex; }
+.toast-icon             { color: var(--green); display: inline-flex; }
+.toast-icon svg         { width: 18px; height: 18px; }
+.toast-timer            { font-weight: 700; color: var(--green); }
+
+.filter-arrow svg       { width: 14px; height: 14px; }
+
+@media (max-width: 480px) {
+  .ad-banner { max-width: calc(100vw - 80px); }
+}

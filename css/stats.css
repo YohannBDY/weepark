@@ -1,0 +1,236 @@
+/* ============================================================
+   Vue Stats — disponibilité temps réel pour l'utilisateur
+   ============================================================ */
+
+.stats-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 20px 40px;
+}
+
+.stats-header {
+  margin-bottom: 24px;
+}
+
+.stats-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.stats-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ──── Héro : grand chiffre places libres ──────────────── */
+
+.stats-hero {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.stats-hero-num {
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--green);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.stats-hero-text {}
+
+.stats-hero-label {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.stats-hero-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ──── Titre de section ────────────────────────────────── */
+
+.stats-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 12px;
+}
+
+/* ──── Cartes par zone ─────────────────────────────────── */
+
+.stats-zones {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.stats-zone-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.stats-zone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.stats-zone-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.stats-zone-badge {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.stats-zone-bar-bg {
+  height: 6px;
+  background: var(--bg3);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.stats-zone-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.stats-zone-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ──── Liste places pas chères ─────────────────────────── */
+
+.stats-cheap-list {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.stats-spot-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+
+.stats-spot-row:last-child {
+  border-bottom: none;
+}
+
+.stats-spot-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.stats-spot-rue {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stats-spot-zone {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.stats-spot-prix {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--green);
+  flex-shrink: 0;
+}
+
+.stats-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ──── Heures de pointe ────────────────────────────────── */
+
+.stats-peak {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.stats-peak-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.stats-peak-row:last-child {
+  margin-bottom: 0;
+}
+
+.stats-peak-label {
+  font-size: 12px;
+  color: var(--muted);
+  width: 72px;
+  flex-shrink: 0;
+}
+
+.stats-peak-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--bg3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.stats-peak-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.stats-peak-val {
+  font-size: 12px;
+  font-weight: 600;
+  width: 34px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.stats-peak-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}

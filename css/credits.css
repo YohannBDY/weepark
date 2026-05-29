@@ -1,0 +1,138 @@
+/* ============================================================
+   Vue Crédits — solde, gain, conversion
+   ============================================================ */
+
+.credits-page {
+  padding: 24px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.balance-card {
+  background: linear-gradient(135deg, #0f766e 0%, #065f46 100%);
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 24px;
+}
+
+.balance-label { font-size: 13px; color: rgba(255, 255, 255, 0.7); margin-bottom: 8px; }
+.balance-value { font-size: 46px; font-weight: 800; color: white; line-height: 1; }
+.balance-unit  { font-size: 18px; font-weight: 400; color: rgba(255, 255, 255, 0.7); margin-left: 6px; }
+
+.balance-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.balance-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.balance-meta-item svg { width: 15px; height: 15px; }
+
+.section-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+
+.earn-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px 15px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+
+.earn-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(16, 185, 129, 0.12);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--green);
+}
+
+.earn-icon svg { width: 20px; height: 20px; }
+
+.earn-info  { flex: 1; min-width: 0; }
+.earn-title { font-size: 14px; font-weight: 600; }
+.earn-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.earn-btn {
+  padding: 7px 14px;
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--transition);
+}
+
+.earn-btn:hover { background: #059669; }
+
+/* Comment ça marche */
+.how-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.how-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.how-item:last-child { border-bottom: none; }
+
+.how-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(16, 185, 129, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.how-num svg     { width: 14px; height: 14px; stroke: var(--green); fill: none; }
+.how-text strong { font-size: 13px; font-weight: 600; display: block; }
+.how-text span   { font-size: 12px; color: var(--muted); }
+
+/* Tableau de conversion */
+.conversion-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.conv-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  transition: background var(--transition);
+}
+
+.conv-row:last-child { border-bottom: none; }
+.conv-row:hover      { background: var(--bg3); }
+.conv-amount         { font-weight: 600; color: var(--green); }

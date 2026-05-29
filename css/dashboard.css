@@ -1,0 +1,136 @@
+/* ============================================================
+   Vue Dashboard — KPI, charts, tableau zones
+   ============================================================ */
+
+.dash-page {
+  padding: 24px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.dash-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.dash-title { font-size: 20px; font-weight: 700; }
+.dash-sub   { font-size: 13px; color: var(--muted); margin-top: 3px; }
+
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.refresh-btn:hover { color: var(--text); border-color: rgba(0, 0, 0, 0.2); }
+
+/* Grille KPI */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.kpi-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.kpi-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kpi-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kpi-icon svg { width: 16px; height: 16px; }
+
+.kpi-value  { font-size: 26px; font-weight: 700; line-height: 1; }
+.kpi-detail { font-size: 12px; color: var(--muted); margin-top: 5px; }
+
+/* Graphiques */
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+  .charts-row { grid-template-columns: 1fr; }
+}
+
+.chart-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.chart-title { font-size: 13px; font-weight: 600; margin-bottom: 14px; }
+
+/* Tableau zones */
+.zone-table {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.zone-table-title {
+  padding: 14px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+
+table { width: 100%; border-collapse: collapse; }
+th    { padding: 9px 18px; font-size: 12px; color: var(--muted); text-align: left; font-weight: 500; }
+td    { padding: 11px 18px; font-size: 13px; border-top: 1px solid var(--border); }
+
+.badge       { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; }
+.badge-green { color: var(--green); }
+.badge-red   { color: var(--red); }
+
+.taux-val    { font-weight: 600; }
+.taux-green  { color: var(--green); }
+.taux-orange { color: var(--orange); }
+.taux-red    { color: var(--red); }
+
+@media (max-width: 480px) {
+  .kpi-grid  { grid-template-columns: 1fr 1fr; }
+  .kpi-value { font-size: 22px; }
+  th, td     { padding: 9px 12px; }
+}
+
+@media (max-width: 360px) {
+  .kpi-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,36 @@
+# Dépendances
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Variables d'environnement (secrets Supabase, etc.)
+.env
+.env.local
+.env.*.local
+
+# Builds
+dist/
+build/
+.vercel/
+
+# Fichiers OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Fichiers Arduino temporaires
+*.bin
+*.elf
+build/
