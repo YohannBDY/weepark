@@ -367,7 +367,7 @@ WeePark.Map = (function () {
 
   function updateFromSensor(id, statut) {
     const p = WeePark.parkings.find(x => x.id === id);
-    if (!p || p.statut === 'reservee') return;
+    if (!p) return;
     p.statut = statut;
     if (markers[id]) markers[id].setIcon(makeIcon(statut));
     updateCounts();

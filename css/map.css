@@ -409,3 +409,26 @@
 @media (max-width: 480px) {
   .ad-banner { max-width: calc(100vw - 80px); }
 }
+
+/* Badge Cloud connecté — état de la connexion Supabase Realtime */
+.cloud-badge {
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+.cloud-badge.connected {
+  opacity: 1;
+}
+.dot-cloud {
+  background: #3b82f6;
+  box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.6);
+  animation: pulse-cloud 2s infinite;
+}
+.cloud-badge:not(.connected) .dot-cloud {
+  background: #94a3b8;
+  animation: none;
+}
+@keyframes pulse-cloud {
+  0%   { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
